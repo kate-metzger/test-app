@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HomeIconInactive from '../../assets/icons/home.svg';
 import HomeIconActive from '../../assets/icons/home-filled.svg';
 import LibraryIconInactive from '../../assets/icons/library.svg';
@@ -22,8 +22,9 @@ export default function BottomTabBar({
   navigation,
   isDarkMode = false,
 }: BottomTabBarCustomProps) {
+   const insets = useSafeAreaInsets();
    const tabs = [
-    { name: 'Home', inactiveIcon: HomeIconInactive, activeIcon: HomeIconActive },
+    { name: 'index', inactiveIcon: HomeIconInactive, activeIcon: HomeIconActive },
     { name: 'Library', inactiveIcon: LibraryIconInactive, activeIcon: LibraryIconActive },
     { name: 'Discover', inactiveIcon: DiscoverIconInactive, activeIcon: DiscoverIconActive },
     { name: 'Social', inactiveIcon: SocialIconInactive, activeIcon: SocialIconActive },
@@ -31,7 +32,11 @@ export default function BottomTabBar({
   ];
 
   return (
-    <View style={styles.container}>
+    <View style={[
+      styles.container,
+      { paddingBottom: insets.bottom || 10 }
+      ]}
+    >
       {tabs.map((tab, index) => {
         const isActive = state.index === index;
         const Icon = isActive ? tab.activeIcon : tab.inactiveIcon;
