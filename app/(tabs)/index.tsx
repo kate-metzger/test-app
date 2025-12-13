@@ -1,10 +1,14 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { useEffect } from 'react';
+import { useNavigation } from 'expo-router';
 
 export default function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: 'Home',
+    });
+  }, []);
+
+  return null;
 }

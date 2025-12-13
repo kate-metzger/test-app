@@ -24,11 +24,11 @@ export default function BottomTabBar({
 }: BottomTabBarCustomProps) {
    const insets = useSafeAreaInsets();
    const tabs = [
-    { name: 'index', inactiveIcon: HomeIconInactive, activeIcon: HomeIconActive },
-    { name: 'Library', inactiveIcon: LibraryIconInactive, activeIcon: LibraryIconActive },
-    { name: 'Discover', inactiveIcon: DiscoverIconInactive, activeIcon: DiscoverIconActive },
-    { name: 'Social', inactiveIcon: SocialIconInactive, activeIcon: SocialIconActive },
-    { name: 'Profile', inactiveIcon: ProfileIconInactive, activeIcon: ProfileIconActive },
+    { name: 'index', label: 'Home', inactiveIcon: HomeIconInactive, activeIcon: HomeIconActive },
+    { name: 'library', label: 'Library', inactiveIcon: LibraryIconInactive, activeIcon: LibraryIconActive },
+    { name: 'discover', label: 'Discover', inactiveIcon: DiscoverIconInactive, activeIcon: DiscoverIconActive },
+    { name: 'social', label: 'Social', inactiveIcon: SocialIconInactive, activeIcon: SocialIconActive },
+    { name: 'profile', label: 'Profile', inactiveIcon: ProfileIconInactive, activeIcon: ProfileIconActive },
   ];
 
   return (
