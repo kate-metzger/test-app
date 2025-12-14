@@ -30,7 +30,7 @@ export default function CurrentlyReadingCard() {
             Page {book.currentPage} of {book.totalPages}
           </Text>
 
-          <Button fullWidth onPress={() => router.back()}>
+          <Button fullWidth onPress={() => router.back()} textStyle={styles.buttonText}>
             Continue Reading
         </Button>
         </View>
@@ -59,9 +59,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   label: {
-    fontSize: 11,
+    fontSize: 12,
     color: '#A0A0A0',
     marginBottom: 4,
+    lineHeight: 16,
+    fontWeight: 400,
   },
   progressBackground: {
     height: 6,
@@ -70,12 +72,17 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '400',
+    lineHeight: 24,
+    letterSpacing: -0.3125,
   },
   author: {
-    fontSize: 13,
+    fontSize: 14,
     color: '#A0A0A0',
     marginBottom: 8,
+    fontWeight: 400, 
+    lineHeight: 20,
+    letterSpacing: -0.1504,
   },
   progressFill: {
     height: '100%',
@@ -90,9 +97,18 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   pageText: {
-    fontSize: 11,
+    fontSize: 12,
     color: '#A0A0A0',
     marginBottom: 8,
+    fontWeight: 400,
+    lineHeight: 16,
+    letterSpacing: 0,
   },
+  buttonText: {
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 20,
+    letterSpacing: -0.1504,
+  }
 });
 

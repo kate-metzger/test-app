@@ -18,6 +18,19 @@ const styles = StyleSheet.create({
     marginTop: 24,
     marginBottom: 20,
   },
-  title: {},
-  subtitle: {},
+  title: {
+    fontFamily: 'Georgia',
+    fontWeight: '400',
+    fontSize: 24,
+    lineHeight: 32,
+    letterSpacing: -0.03125,
+  },
+  subtitle: {
+    fontFamily: 'Inter',
+    fontWeight: '400',
+    fontSize: 16,
+    lineHeight: 16,
+    letterSpacing: 0,
+    color: '#A0A0A0',
+  },
 });

@@ -71,5 +71,10 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 6, // spacing between icon and text
   },
-  text: {},
+  text: {
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF'
+  },
 });

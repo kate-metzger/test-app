@@ -47,11 +47,16 @@ export default function BottomTabBar({
               name={tab.icon as any}
               size={22}
               color={isActive ? '#4A90E2' : '#A0A0A0'}
-              strokeWidth={isActive ? 2.2 : 2}
             />
-            <Text>
-              { tab.label }
-            </Text>
+            <Text
+              style={[
+                styles.label,
+                { color: isActive ? '#4A90E2' : '#A0A0A0' },
+              ]}
+            >
+  {tab.label}
+</Text>
+
           </TouchableOpacity>
         );
       })}
