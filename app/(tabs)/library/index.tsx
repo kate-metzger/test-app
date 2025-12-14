@@ -1,10 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import LibraryScreen from '@/components/screens/LibraryScreen';
 
-export default function LibraryScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Library Screen</Text>
-    </View>
-  );
+export default function Index() {
+  return <LibraryScreen isDarkMode={false} navigate={(path) => console.log('Navigate to', path)} />;
 }
