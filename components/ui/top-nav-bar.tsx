@@ -7,18 +7,18 @@ import Icon from './Icon';
 interface TopNavBarProps {
   title: string;
   isDarkMode: boolean;
-  showBack?: boolean;
-  showSearch?: boolean;
-  showMenu?: boolean;
+  showBackIcon?: boolean;
+  showSearchIcon?: boolean;
+  showMenuIcon?: boolean;
   onSearchPress?: () => void;
 }
 
 export default function TopNavBar({
   title,
   isDarkMode,
-  showBack = false,
-  showSearch = false,
-  showMenu = false,
+  showBackIcon = false,
+  showSearchIcon = false,
+  showMenuIcon = false,
   onSearchPress,
 }: TopNavBarProps) {
   const insets = useSafeAreaInsets();
@@ -38,7 +38,7 @@ export default function TopNavBar({
       <View style={styles.inner}>
         {/* LEFT */}
         <View style={styles.left}>
-          {showBack && (
+          {showBackIcon && (
             <TouchableOpacity
               onPress={() => router.back()}
               style={styles.iconButton}
@@ -64,7 +64,7 @@ export default function TopNavBar({
 
         {/* RIGHT */}
         <View style={styles.right}>
-          {showSearch && (
+          {showSearchIcon && (
             <TouchableOpacity
               onPress={onSearchPress}
               style={styles.iconButton}
@@ -78,7 +78,7 @@ export default function TopNavBar({
             </TouchableOpacity>
           )}
 
-          {showMenu && (
+          {showMenuIcon && (
             <TouchableOpacity
               style={styles.iconButton}
               hitSlop={8}

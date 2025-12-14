@@ -12,7 +12,7 @@ export default function ProfileLayout() {
       <TopNavBar
         title="Profile"
         isDarkMode={false}
-        showMenu
+        showMenuIcon
       />
       <Slot />
     </View>

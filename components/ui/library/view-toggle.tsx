@@ -16,6 +16,7 @@ export default function ViewToggle({
 }: ViewToggleProps) {
   return (
     <View style={styles.container}>
+      <View style={styles.leftGroup}>
         <Button
           onPress={() => setViewMode('grid')}
           variant="chip"
@@ -44,13 +45,35 @@ export default function ViewToggle({
             />
           }
         />
-    </View>
-  );
+      </View>
+
+        <Button
+          onPress={() => console.log('Open filters')}
+          variant="chip"
+          isDarkMode={isDarkMode}
+          icon={
+            <Icon
+              name="Funnel"
+              size={16}
+              strokeWidth={1.5}
+              color={isDarkMode ? '#A0A0A0' : '#666666'}
+            />
+          }
+        >
+          Sort & Filter
+        </Button>
+      </View>
+    );
 }
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 16,
   },
+  leftGroup: {
+    flexDirection: 'row',
+  }
 });

@@ -5,15 +5,15 @@ import TopNavBar from '../../../components/ui/top-nav-bar';
 
 export default function SocialLayout() {
   const pathname = usePathname();
-  const showSearch = true;
+  const showSearchIcon = true;
 
   return (
     <View style={{ flex: 1 }}>
       <TopNavBar
         title="Social"
         isDarkMode={false}
-        showBack={false}
-        showSearch={showSearch}
+        showBackIcon={false}
+        showSearchIcon={showSearchIcon}
       />
       <Slot />
     </View>

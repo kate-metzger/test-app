@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Slot, usePathname } from 'expo-router';
-import TopNavBar from '../../../components/ui/top-nav-bar';
+import { useRouter } from 'expo-router';
+import TopNavBar from '@/components/ui/top-nav-bar';
+import LibraryScreen from '@/components/screens/LibraryScreen';
 
 export default function LibraryLayout() {
-  const pathname = usePathname();
-  const showSearch = true; // Library always shows search
+  const router = useRouter();
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const isDarkMode = false;
 
   return (
     <View style={{ flex: 1 }}>
       <TopNavBar
         title="Library"
-        isDarkMode={false}
-        showBack={false} // top-level tab, no back
-        showSearch={showSearch}
+        isDarkMode={isDarkMode}
+        showSearchIcon={true}
+        onSearchPress={() => setShowSearch(prev => !prev)}
       />
-      <Slot />
+
+      <LibraryScreen
+        isDarkMode={isDarkMode}
+        showSearch={showSearch}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        navigate={router.push} // Pass router.push directly
+      />
     </View>
   );
 }

@@ -5,14 +5,14 @@ import TopNavBar from '../../../components/ui/top-nav-bar';
 
 export default function DiscoverLayout() {
   const pathname = usePathname();
-  const showSearch = true;
+  const showSearchIcon = true;
 
   return (
     <View style={{ flex: 1 }}>
       <TopNavBar
         title="Discover"
         isDarkMode={false}
-        showSearch={showSearch}
+        showSearchIcon={showSearchIcon}
       />
       <Slot />
     </View>
