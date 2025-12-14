@@ -8,7 +8,8 @@ import RecentActivity from '../../../components/ui/home/recent-activity';
 export default function HomeScreen() {
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
+      style={styles.container}
+      contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
       <HomeGreeting />
@@ -22,7 +23,13 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
     paddingBottom: 32,
   },
+  content: {
+    paddingHorizontal: 16,
+    paddingBottom: 120,
+  }
 });

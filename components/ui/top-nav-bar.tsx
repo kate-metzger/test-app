@@ -125,7 +125,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
-  title: {},
+  title: {
+    fontFamily: 'Georgia',
+    fontWeight: 400,
+    fontSize: 24,
+    lineHeight: 36,
+    letterSpacing: 0,
+  },
   iconButton: {
     padding: 4,
   },
