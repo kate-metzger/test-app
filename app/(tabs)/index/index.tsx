@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import HomeGreeting from '../../../components/ui/home/home-greeting';
 import CurrentlyReadingCard from '../../../components/ui/home/currently-reading-card';
 import QuickAddButton from '../../../components/ui/home/quick-add-button';
@@ -25,11 +25,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    paddingHorizontal: 16,
-    paddingBottom: 32,
   },
   content: {
     paddingHorizontal: 16,
-    paddingBottom: 120,
-  }
+    paddingBottom: 20,
+  },
 });

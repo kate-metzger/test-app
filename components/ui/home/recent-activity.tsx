@@ -98,19 +98,22 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '400',
   },
   date: {
     fontSize: 12,
     color: '#A0A0A0',
   },
   book: {
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: 14,
+    lineHeight: 20,
     marginBottom: 2,
+    letterSpacing: -0.1504,
   },
   author: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#A0A0A0',
+    lineHeight: 16,
+    fontWeight: 400,
   },
 });
