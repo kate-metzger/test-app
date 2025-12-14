@@ -1,15 +1,44 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, Platform } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 import Icon from '../Icon';
 
-export default function SearchBar() {
+interface SearchBarProps {
+  value: string;
+  onChangeText: (text: string) => void;
+  placeholder?: string;
+  isDarkMode?: boolean;
+}
+
+export default function SearchBar({
+  value,
+  onChangeText,
+  placeholder = 'Search by title, author, tropes, mood...',
+  isDarkMode = false,
+}: SearchBarProps) {
   return (
-    <View style={styles.container}>
-      <Icon name="Search" size={20} color="#A0A0A0" style={styles.icon} />
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: isDarkMode ? '#1E1E1E' : '#F5F5F5',
+          borderColor: isDarkMode ? '#404040' : '#E0E0E0',
+        },
+      ]}
+    >
+      <View style={styles.iconWrapper}>
+        <Icon
+          name="Search"
+          size={18}
+          color={isDarkMode ? '#A0A0A080' : '#60606080'} 
+        />
+      </View>
       <TextInput
-        style={styles.input}
-        placeholder="Search by title, author, tropes, mood..."
-        placeholderTextColor="#A0A0A0"
+        style={[styles.input, { color: isDarkMode ? '#FFF' : '#000' }]}
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={isDarkMode ? '#A0A0A080' : '#A0A0A0'}
+        returnKeyType="search"
       />
     </View>
   );
@@ -18,21 +47,24 @@ export default function SearchBar() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center', // vertical centering for container
-    backgroundColor: '#F5F5F5',
+    alignItems: 'center',
+    borderWidth: 1,
     borderRadius: 12,
     height: 40,
-    paddingHorizontal: 10, // gives some space inside container
+    marginBottom: 12,
   },
-  icon: {
-    marginRight: 12, // space between icon and text
-    marginTop: Platform.OS === 'ios' ? 1 : 0, // tiny nudge for iOS
+  iconWrapper: {
+    width: 36,           // fixed width to push text away
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 12,
     lineHeight: 24,
-    paddingVertical: 0, // remove default padding
-    marginTop: Platform.OS === 'ios' ? -1 : -2, // lifts the text slightly to center with icon
+    paddingBottom: 12,
+    paddingTop: 12,
+    paddingRight: 16,
+    paddingLeft: 40
   },
 });
