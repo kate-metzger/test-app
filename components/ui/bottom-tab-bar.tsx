@@ -55,8 +55,8 @@ export default function BottomTabBar({
             <Text
               style={[styles.tabLabel, 
               { color: isActive ? '#4A90E2' : '#A0A0A0' }]}>
-              {tab.name}
-            </Text>
+              { tab.label }
+              </Text>
           </TouchableOpacity>
         );
       })}

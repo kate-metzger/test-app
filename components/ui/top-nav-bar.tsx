@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 
 import BackIcon from '../../assets/icons/chevron-left.svg';
-import SearchIcon from '../../assets/icons/magnifying-glass.svg';
+import SearchIcon from '../../assets/icons/search.svg';
 import MenuIcon from '../../assets/icons/more-options.svg';
 
 interface TopNavBarProps {
@@ -42,7 +42,7 @@ export default function TopNavBar({
         <View style={styles.left}>
           {showBack && (
             <TouchableOpacity onPress={() => router.back()} style={styles.iconButton}>
-              <BackIcon width={24} height={24} />
+              <BackIcon width={24} height={24} fill={isDarkMode ? '#fff' : '#000'}/>
             </TouchableOpacity>
           )}
 
@@ -66,7 +66,7 @@ export default function TopNavBar({
 
           {showMenu && (
             <TouchableOpacity style={styles.iconButton}>
-              <MenuIcon width={22} height={22} />
+              <MenuIcon width={22} height={22} fill={isDarkMode ? '#fff' : '#000'}/>
             </TouchableOpacity>
           )}
         </View>
@@ -83,18 +83,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 8,
     elevation: 4,
+    minHeight: 60,
   },
   inner: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
+    minHeight: 56,
   },
   left: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
     flex: 1,
+    height: 40,
   },
   right: {
     flexDirection: 'row',
@@ -104,6 +107,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontFamily: 'Georgia',
+    lineHeight: 40,
   },
   iconButton: {
     padding: 4,
