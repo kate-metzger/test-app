@@ -12,7 +12,6 @@ export default function DiscoverLayout() {
       <TopNavBar
         title="Discover"
         isDarkMode={false}
-        showBack={false}
         showSearch={showSearch}
       />
       <Slot />

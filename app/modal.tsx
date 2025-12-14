@@ -17,10 +17,39 @@ export default function ModalScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    borderBottomWidth: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  inner: {
+    height: 56,                 // ← THIS fixes the Home header height issue
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+  },
+  side: {
+    width: 64,                  // keeps title perfectly centered
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  title: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 18,
+    fontFamily: 'Georgia',
+    fontWeight: '500',
+  },
+  iconButton: {
+    padding: 6,
+  },
+  label: {
+    fontSize: 11,
+    color: '#A0A0A0',
+    marginBottom: 4,
   },
   link: {
     marginTop: 15,

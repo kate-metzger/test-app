@@ -1,6 +1,6 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
-import Button from '../button';
 import { router } from 'expo-router';
+import { Image, StyleSheet, View, Text } from 'react-native';
+import Button from '../button';
 
 export default function CurrentlyReadingCard() {
   const book = {
@@ -30,9 +30,9 @@ export default function CurrentlyReadingCard() {
             Page {book.currentPage} of {book.totalPages}
           </Text>
 
-          <Button size="sm" fullWidth onPress={() => router.push('/book/1')}>
+          <Button fullWidth onPress={() => router.back()}>
             Continue Reading
-          </Button>
+        </Button>
         </View>
       </View>
     </View>
@@ -42,13 +42,13 @@ export default function CurrentlyReadingCard() {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#F5F5F5',
-    borderRadius: 16,
+    borderRadius: 20,
     padding: 16,
-    marginBottom: 24,
+    marginBottom: 20,
   },
   row: {
     flexDirection: 'row',
-    gap: 12,
+    gap: 16,
   },
   cover: {
     width: 90,
@@ -63,6 +63,11 @@ const styles = StyleSheet.create({
     color: '#A0A0A0',
     marginBottom: 4,
   },
+  progressBackground: {
+    height: 6,
+    backgroundColor: '#E0E0E0',
+    borderRadius: 4,
+  },
   title: {
     fontSize: 16,
     fontWeight: '600',
@@ -72,6 +77,11 @@ const styles = StyleSheet.create({
     color: '#A0A0A0',
     marginBottom: 8,
   },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#4A90E2',
+    borderRadius: 4,
+  },
   progressBar: {
     height: 6,
     backgroundColor: '#E0E0E0',
@@ -79,13 +89,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 6,
   },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#4A90E2',
-  },
   pageText: {
     fontSize: 11,
     color: '#A0A0A0',
     marginBottom: 8,
   },
 });
+

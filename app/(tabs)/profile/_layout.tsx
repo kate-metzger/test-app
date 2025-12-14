@@ -10,11 +10,9 @@ export default function ProfileLayout() {
   return (
     <View style={{ flex: 1 }}>
       <TopNavBar
-        title="Discover"
+        title="Profile"
         isDarkMode={false}
-        showBack={false}
-        showSearch={false}
-        showMenu={showMenu}
+        showMenu
       />
       <Slot />
     </View>

@@ -1,9 +1,9 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import BookIcon from '../../assets/icons/book.svg';
 import Button from '../ui/button';
 import TextField from '../ui/text-field';
-import BookIcon from '../../assets/icons/book.svg';
 
 interface LoginScreenProps {
   onLogin: () => void;
@@ -24,13 +24,13 @@ export default function LoginScreen({ onLogin, isDarkMode }: LoginScreenProps) {
         <View style={styles.iconWrapper}>
           <BookIcon width={40} height={40} />
         </View>
-        <Text style={[styles.title, { color: isDarkMode ? 'white' : 'black' }]}>ReadTracker</Text>
+        <Text style={styles.title}>ReadTracker</Text>
         <Text style={styles.subtitle}>Your personal reading companion</Text>
       </View>
 
       {/* Form Card */}
       <View style={[styles.formCard, { backgroundColor: isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}>
-        <Text style={[styles.heading, { color: isDarkMode ? 'white' : 'black' }]}>
+        <Text style={styles.heading}>
           {isSignUp ? 'Create Account' : 'Welcome Back'}
         </Text>
 
@@ -108,10 +108,10 @@ export default function LoginScreen({ onLogin, isDarkMode }: LoginScreenProps) {
         </View>
 
         <View style={{ gap: 12 }}>
-          <Button onPress={() => { /* handle Google login */ }} variant="outline" fullWidth isDarkMode={isDarkMode}>
+          <Button onPress={() => { /* handle Google login */ }} variant="secondary" fullWidth isDarkMode={isDarkMode}>
             Google
           </Button>
-          <Button onPress={() => { /* handle Apple login */ }} variant="outline" fullWidth isDarkMode={isDarkMode}>
+          <Button onPress={() => { /* handle Apple login */ }} variant="secondary" fullWidth isDarkMode={isDarkMode}>
             Apple
           </Button>
         </View>

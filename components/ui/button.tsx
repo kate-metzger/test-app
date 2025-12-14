@@ -1,61 +1,75 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle, Text } from 'react-native';
 
 interface ButtonProps {
-  onPress: () => void;
   children: React.ReactNode;
-  variant?: 'primary' | 'outline';
+  onPress: () => void;
   fullWidth?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary';
   isDarkMode?: boolean;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+  icon?: React.ReactNode; // optional icon
 }
 
 export default function Button({
-  onPress,
   children,
-  variant = 'primary',
+  onPress,
   fullWidth = false,
   size = 'md',
+  variant = 'primary',
   isDarkMode = false,
+  style,
+  textStyle,
+  icon,
 }: ButtonProps) {
   const backgroundColor =
-    variant === 'primary' ? '#4A90E2' : 'transparent';
-  const borderColor =
-    variant === 'outline' ? '#4A90E2' : 'transparent';
-  const textColor =
-    variant === 'primary' ? '#fff' : '#4A90E2';
+    variant === 'primary'
+      ? isDarkMode
+        ? '#4A90E2'
+        : '#4A90E2'
+      : isDarkMode
+      ? '#404040'
+      : '#E0E0E0';
 
-  const padding = size === 'sm' ? 8 : size === 'lg' ? 16 : 12;
+  const paddingVertical = size === 'sm' ? 8 : size === 'lg' ? 16 : 12;
+  const paddingHorizontal = 16;
 
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
         styles.button,
-        { backgroundColor, borderColor, padding, width: fullWidth ? '100%' : undefined },
-        variant === 'outline' && styles.outline,
+        { backgroundColor, paddingVertical, paddingHorizontal },
+        fullWidth && { alignSelf: 'stretch' },
+        style,
       ]}
+      activeOpacity={0.7}
     >
-      <Text style={[styles.text, { color: textColor }]}>{children}</Text>
+      <View style={styles.content}>
+        {icon && <View style={styles.icon}>{icon}</View>}
+        <Text style={styles.text}>
+          {children}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    padding: 12,
-    borderRadius: 8,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4A90E2',
   },
-  outline: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: '#4A90E2',
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center', // vertically centers icon and text
+    justifyContent: 'center',
   },
-  text: {
-    fontSize: 16,
-    fontWeight: '600',
+  icon: {
+    marginRight: 6, // spacing between icon and text
   },
+  text: {},
 });

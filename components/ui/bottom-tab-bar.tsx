@@ -1,17 +1,8 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import { Platform, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import HomeIconInactive from '../../assets/icons/home.svg';
-import HomeIconActive from '../../assets/icons/home-filled.svg';
-import LibraryIconInactive from '../../assets/icons/library.svg';
-import LibraryIconActive from '../../assets/icons/library-filled.svg';
-import DiscoverIconInactive from '../../assets/icons/sparkle.svg';
-import DiscoverIconActive from '../../assets/icons/sparkle-filled.svg';
-import SocialIconInactive from '../../assets/icons/users.svg';
-import SocialIconActive from '../../assets/icons/users-filled.svg';
-import ProfileIconInactive from '../../assets/icons/user.svg';
-import ProfileIconActive from '../../assets/icons/user-filled.svg';
+import Icon from './Icon';
 
 interface BottomTabBarCustomProps extends BottomTabBarProps {
   isDarkMode?: boolean;
@@ -24,22 +15,26 @@ export default function BottomTabBar({
 }: BottomTabBarCustomProps) {
    const insets = useSafeAreaInsets();
    const tabs = [
-    { name: 'index', label: 'Home', inactiveIcon: HomeIconInactive, activeIcon: HomeIconActive },
-    { name: 'library', label: 'Library', inactiveIcon: LibraryIconInactive, activeIcon: LibraryIconActive },
-    { name: 'discover', label: 'Discover', inactiveIcon: DiscoverIconInactive, activeIcon: DiscoverIconActive },
-    { name: 'social', label: 'Social', inactiveIcon: SocialIconInactive, activeIcon: SocialIconActive },
-    { name: 'profile', label: 'Profile', inactiveIcon: ProfileIconInactive, activeIcon: ProfileIconActive },
+    { name: 'index', label: 'Home', icon: 'Home' },
+    { name: 'library', label: 'Library', icon: 'Library' },
+    { name: 'discover', label: 'Discover', icon: 'Sparkles' },
+    { name: 'social', label: 'Social', icon: 'Users' },
+    { name: 'profile', label: 'Profile', icon: 'User' },
   ];
 
   return (
-    <View style={[
+    <View 
+      style={[
       styles.container,
-      { paddingBottom: insets.bottom || 10 }
+        {
+          paddingBottom: insets.bottom || 10,
+          backgroundColor: isDarkMode ? '#1E1E1E' : '#FFFFFF',
+          borderTopColor: isDarkMode ? '#333' : '#E0E0E0',
+        },
       ]}
     >
       {tabs.map((tab, index) => {
         const isActive = state.index === index;
-        const Icon = isActive ? tab.activeIcon : tab.inactiveIcon;
 
         return (
           <TouchableOpacity
@@ -49,14 +44,14 @@ export default function BottomTabBar({
             activeOpacity={0.7}
             >
             <Icon
-              width={24}
-              height={24} 
+              name={tab.icon as any}
+              size={22}
+              color={isActive ? '#4A90E2' : '#A0A0A0'}
+              strokeWidth={isActive ? 2.2 : 2}
             />
-            <Text
-              style={[styles.tabLabel, 
-              { color: isActive ? '#4A90E2' : '#A0A0A0' }]}>
+            <Text>
               { tab.label }
-              </Text>
+            </Text>
           </TouchableOpacity>
         );
       })}
@@ -76,8 +71,9 @@ const styles = StyleSheet.create({
   tabButton: {
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 2,
   },
-  tabLabel: {
+  label: {
     fontSize: 12,
     marginTop: 2,
   },

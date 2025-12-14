@@ -1,11 +1,8 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-
-import BackIcon from '../../assets/icons/chevron-left.svg';
-import SearchIcon from '../../assets/icons/search.svg';
-import MenuIcon from '../../assets/icons/more-options.svg';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Icon from './Icon';
 
 interface TopNavBarProps {
   title: string;
@@ -25,6 +22,7 @@ export default function TopNavBar({
   onSearchPress,
 }: TopNavBarProps) {
   const insets = useSafeAreaInsets();
+  const iconColor = isDarkMode ? '#FFFFFF' : '#000000';
 
   return (
     <View
@@ -41,32 +39,55 @@ export default function TopNavBar({
         {/* LEFT */}
         <View style={styles.left}>
           {showBack && (
-            <TouchableOpacity onPress={() => router.back()} style={styles.iconButton}>
-              <BackIcon width={24} height={24} fill={isDarkMode ? '#fff' : '#000'}/>
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={styles.iconButton}
+              hitSlop={8}
+            >
+              <Icon
+                name="ChevronLeft"
+                size={24}
+                color={iconColor}
+              />
             </TouchableOpacity>
           )}
-
+          {/* TITLE */}
           <Text
-            style={[
+              style={[
               styles.title,
               { color: isDarkMode ? '#FFFFFF' : '#000000' },
             ]}
-          >
-            {title}
-          </Text>
-        </View>
+              >
+                {title}
+              </Text>
+          </View>
 
         {/* RIGHT */}
         <View style={styles.right}>
           {showSearch && (
-            <TouchableOpacity onPress={onSearchPress} style={styles.iconButton}>
-              <SearchIcon width={22} height={22} />
+            <TouchableOpacity
+              onPress={onSearchPress}
+              style={styles.iconButton}
+              hitSlop={8}
+            >
+              <Icon
+                name="Search"
+                size={22}
+                color={iconColor} 
+              />
             </TouchableOpacity>
           )}
 
           {showMenu && (
-            <TouchableOpacity style={styles.iconButton}>
-              <MenuIcon width={22} height={22} fill={isDarkMode ? '#fff' : '#000'}/>
+            <TouchableOpacity
+              style={styles.iconButton}
+              hitSlop={8}
+            >
+              <Icon
+                name="MoreHorizontal"
+                size={22}
+                color={iconColor}
+              />
             </TouchableOpacity>
           )}
         </View>
@@ -104,11 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Georgia',
-    lineHeight: 40,
-  },
+  title: {},
   iconButton: {
     padding: 4,
   },
