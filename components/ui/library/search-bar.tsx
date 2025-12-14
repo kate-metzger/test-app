@@ -50,21 +50,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 12,
-    height: 40,
+    height: 44,
     marginBottom: 12,
   },
   iconWrapper: {
-    width: 36,           // fixed width to push text away
+    width: 40,           // fixed width to push text away
     alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
     flex: 1,
-    fontSize: 12,
-    lineHeight: 24,
-    paddingBottom: 12,
-    paddingTop: 12,
+    fontSize: 16,
+    lineHeight: 20,
     paddingRight: 16,
-    paddingLeft: 40
+    paddingVertical: 0,
+    marginTop: 1,
   },
 });

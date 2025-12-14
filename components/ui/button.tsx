@@ -1,16 +1,25 @@
 import React from 'react';
-import { StyleSheet, TextStyle, TouchableOpacity, View, ViewStyle, Text } from 'react-native';
+import {
+  StyleSheet,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+  Text,
+  StyleProp,
+} from 'react-native';
 
 interface ButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onPress: () => void;
   fullWidth?: boolean;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'chip';
   isDarkMode?: boolean;
-  style?: ViewStyle;
-  textStyle?: TextStyle;
-  icon?: React.ReactNode; // optional icon
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  icon?: React.ReactNode;
+  selected?: boolean;
 }
 
 export default function Button({
@@ -23,35 +32,69 @@ export default function Button({
   style,
   textStyle,
   icon,
+  selected = false,
 }: ButtonProps) {
-  const backgroundColor =
-    variant === 'primary'
-      ? isDarkMode
-        ? '#4A90E2'
-        : '#4A90E2'
-      : isDarkMode
-      ? '#404040'
-      : '#E0E0E0';
+  const isChip = variant === 'chip';
+  const isIconOnly = !children && !!icon;
 
-  const paddingVertical = size === 'sm' ? 8 : size === 'lg' ? 16 : 12;
-  const paddingHorizontal = 16;
+  // Size constants
+  const iconButtonSize = 40;
+  const chipHeight = 32;
+  const chipPaddingHorizontal = 12;
+  const regularPaddingVertical = size === 'sm' ? 8 : size === 'lg' ? 16 : 12;
+  const regularPaddingHorizontal = 16;
+
+  // Background color
+  const backgroundColor = isChip
+    ? selected
+      ? '#4A90E2'
+      : isDarkMode
+      ? '#1E1E1E'
+      : '#F5F5F5'
+    : variant === 'primary'
+    ? '#4A90E2'
+    : isDarkMode
+    ? '#404040'
+    : '#E0E0E0';
+
+  // Text color
+  const textColor = isChip
+    ? selected
+      ? '#FFFFFF'
+      : isDarkMode
+      ? '#A0A0A0'
+      : '#666666'
+    : '#FFFFFF';
+
+  // Styles based on type
+  let buttonStyle: ViewStyle = {};
+  let contentStyle: ViewStyle = { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' };
+
+  if (isIconOnly) {
+    // Icon-only button (grid/list)
+    buttonStyle = { width: iconButtonSize, height: iconButtonSize };
+    contentStyle = { justifyContent: 'center', alignItems: 'center' };
+  } else if (isChip) {
+    // Chip (status or filter)
+    buttonStyle = { height: chipHeight, paddingHorizontal: chipPaddingHorizontal };
+  } else {
+    // Regular button
+    buttonStyle = { paddingVertical: regularPaddingVertical, paddingHorizontal: regularPaddingHorizontal };
+  }
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[
-        styles.button,
-        { backgroundColor, paddingVertical, paddingHorizontal },
-        fullWidth && { alignSelf: 'stretch' },
-        style,
-      ]}
-      activeOpacity={0.7}
+      activeOpacity={0.8}
+      style={[styles.button, { backgroundColor }, buttonStyle, fullWidth && { alignSelf: 'stretch' }, style]}
     >
-      <View style={styles.content}>
-        {icon && <View style={styles.icon}>{icon}</View>}
-        <Text style={styles.text}>
-          {children}
-        </Text>
+      <View style={[styles.content, contentStyle]}>
+        {icon && <View style={isIconOnly ? {} : styles.icon}>{icon}</View>}
+        {children && (
+          <Text style={[styles.text, { color: textColor, fontSize: isChip ? 14 : 16 }, textStyle]}>
+            {children}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -73,8 +116,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Inter',
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF'
+    fontWeight: '400',
   },
 });

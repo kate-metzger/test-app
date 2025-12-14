@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Button from '../button';
 import Icon from '../Icon';
 
 interface ViewToggleProps {
@@ -8,29 +9,48 @@ interface ViewToggleProps {
   isDarkMode?: boolean;
 }
 
-export default function ViewToggle({ viewMode, setViewMode, isDarkMode = false }: ViewToggleProps) {
+export default function ViewToggle({
+  viewMode,
+  setViewMode,
+  isDarkMode = false,
+}: ViewToggleProps) {
   return (
     <View style={styles.container}>
-      <View style={styles.buttons}>
-        <TouchableOpacity
+        <Button
           onPress={() => setViewMode('grid')}
-          style={[styles.button, { backgroundColor: viewMode === 'grid' ? '#4A90E2' : isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}
-        >
-          <Icon name="Grid" size={18} color={viewMode === 'grid' ? '#fff' : '#A0A0A0'} />
-        </TouchableOpacity>
-        <TouchableOpacity
+          variant="chip"
+          selected={viewMode === 'grid'}
+          isDarkMode={isDarkMode}
+          icon={
+            <Icon
+              name="Grid"
+              size={18}
+              color={viewMode === 'grid' ? '#FFFFFF' : '#A0A0A0'}
+            />
+          }
+          style={{ marginRight: 8}}
+        />
+
+        <Button
           onPress={() => setViewMode('list')}
-          style={[styles.button, { backgroundColor: viewMode === 'list' ? '#4A90E2' : isDarkMode ? '#1E1E1E' : '#F5F5F5' }]}
-        >
-          <Icon name="List" size={18} color={viewMode === 'list' ? '#fff' : '#A0A0A0'} />
-        </TouchableOpacity>
-      </View>
+          variant="chip"
+          selected={viewMode === 'list'}
+          isDarkMode={isDarkMode}
+          icon={
+            <Icon
+              name="List"
+              size={18}
+              color={viewMode === 'list' ? '#FFFFFF' : '#A0A0A0'}
+            />
+          }
+        />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 12 },
-  buttons: { flexDirection: 'row', gap: 8 },
-  button: { padding: 6, borderRadius: 8 },
+  container: {
+    flexDirection: 'row',
+    marginBottom: 16,
+  },
 });

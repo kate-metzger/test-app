@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import SearchBar from '../ui/library/search-bar';
 import FilterChips from '../ui/library/filter-chips';
 import ViewToggle from '../ui/library/view-toggle';
