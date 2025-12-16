@@ -20,6 +20,7 @@ export default function ViewToggle({
         <Button
           onPress={() => setViewMode('grid')}
           variant="chip"
+          chipSize='icon'
           selected={viewMode === 'grid'}
           isDarkMode={isDarkMode}
           icon={
@@ -35,6 +36,7 @@ export default function ViewToggle({
         <Button
           onPress={() => setViewMode('list')}
           variant="chip"
+          chipSize='icon'
           selected={viewMode === 'list'}
           isDarkMode={isDarkMode}
           icon={
@@ -44,6 +46,7 @@ export default function ViewToggle({
               color={viewMode === 'list' ? '#FFFFFF' : '#A0A0A0'}
             />
           }
+          style={{ marginRight: 8}}
         />
       </View>
 
@@ -51,6 +54,7 @@ export default function ViewToggle({
           onPress={() => console.log('Open filters')}
           variant="chip"
           isDarkMode={isDarkMode}
+          chipSize='compact'
           icon={
             <Icon
               name="Funnel"
