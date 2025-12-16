@@ -35,32 +35,7 @@ export default function Button({
   textStyle,
 }: ButtonProps) {
   const isChip = variant === 'chip';
-  const hasText = Boolean(children);
-
-  /* ---------- CHIP LAYOUT ---------- */
-  const chipLayout: ViewStyle | undefined = isChip
-    ? chipSize === 'icon'
-      ? {
-          width: 34,
-          height: 34,
-          padding: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }
-      : chipSize === 'compact'
-      ? {
-          height: 36,
-          paddingHorizontal: 12,
-          paddingVertical: 0,
-          justifyContent: 'center',
-        }
-      : {
-          height: 36,
-          paddingHorizontal: 14,
-          paddingVertical: 0,
-          justifyContent: 'center',
-        }
-    : undefined;
+  const hasText = !!children;
 
   /* ---------- COLORS ---------- */
   const backgroundColor = isChip
@@ -79,25 +54,63 @@ export default function Button({
       : '#666666'
     : '#FFFFFF';
 
+  /* ---------- BUTTON STYLE ---------- */
+  const buttonStyle: ViewStyle = {
+    borderRadius: 12,
+    backgroundColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    width: fullWidth ? undefined : undefined,
+  };
+
+  /* ---------- CHIP SIZE ADJUSTMENTS ---------- */
+  if (isChip) {
+    switch (chipSize) {
+      case 'icon':
+        Object.assign(buttonStyle, {
+          width: 34,
+          height: 34,
+          padding: 0,
+        });
+        break;
+      case 'compact':
+        Object.assign(buttonStyle, {
+          height: 36,
+          paddingHorizontal: 12,
+          paddingVertical: 0,
+        });
+        break;
+      default:
+        Object.assign(buttonStyle, {
+          height: 36,
+          paddingHorizontal: 14,
+          paddingVertical: 0,
+        });
+        break;
+    }
+  }
+
+  /* ---------- INNER CONTENT STYLE ---------- */
+  const contentStyle: ViewStyle = {
+    flexDirection: hasText ? 'row' : 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.85}
-      style={[
-        styles.base,
-        chipLayout,
-        { backgroundColor },
-        fullWidth && { alignSelf: 'stretch' },
-        style,
-      ]}
+      style={[buttonStyle, style]}
     >
-      <View style={styles.content}>
+      <View style={contentStyle}>
         {icon && (
-          <View style={hasText ? styles.iconWithText : styles.iconOnly}>
+          <View style={hasText ? { marginRight: 6 } : { flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             {icon}
           </View>
         )}
-
         {children && (
           <Text
             style={[
@@ -119,27 +132,8 @@ export default function Button({
 }
 
 const styles = StyleSheet.create({
-  base: {
-    borderRadius: 12,
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-  },
-  content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  iconWithText: {
-    marginRight: 6,
-  },
   text: {
     fontFamily: 'Inter',
     fontWeight: '400',
   },
-  iconOnly: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
 });
