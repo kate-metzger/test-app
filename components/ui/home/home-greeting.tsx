@@ -16,21 +16,21 @@ export default function HomeGreeting() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 24,
-    marginBottom: 20,
+    marginBottom: 24,
   },
   title: {
     fontFamily: 'Georgia',
     fontWeight: '400',
     fontSize: 24,
     lineHeight: 32,
-    letterSpacing: -0.03125,
+    letterSpacing: 0,
   },
   subtitle: {
     fontFamily: 'Inter',
     fontWeight: '400',
     fontSize: 16,
-    lineHeight: 16,
-    letterSpacing: 0,
+    lineHeight: 24,
+    letterSpacing: -0.3125,
     color: '#A0A0A0',
   },
 });

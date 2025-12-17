@@ -30,7 +30,11 @@ export default function CurrentlyReadingCard() {
             Page {book.currentPage} of {book.totalPages}
           </Text>
 
-          <Button fullWidth onPress={() => router.back()} textStyle={styles.buttonText}>
+          <Button
+            onPress={() => router.back()}
+            variant="primary"
+            textStyle={styles.buttonText}
+            style={styles.button}>
             Continue Reading
         </Button>
         </View>
@@ -42,8 +46,8 @@ export default function CurrentlyReadingCard() {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#F5F5F5',
-    borderRadius: 20,
-    padding: 16,
+    borderRadius: 16,
+    padding: 24,
     marginBottom: 20,
   },
   row: {
@@ -52,8 +56,8 @@ const styles = StyleSheet.create({
   },
   cover: {
     width: 90,
-    height: 135,
-    borderRadius: 8,
+    height: 140,
+    borderRadius: 10,
   },
   info: {
     flex: 1,
@@ -109,6 +113,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     letterSpacing: -0.1504,
+    textAlign: 'center',
+  },
+  button: {
+    height: 32,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    justifyContent: 'center',
   }
 });
 
