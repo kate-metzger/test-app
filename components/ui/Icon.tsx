@@ -21,5 +21,10 @@ export default function Icon({
 }: IconProps) {
   const Lucide = Icons[name] as LucideIcon;
 
-  return <Lucide size={size} color={color} strokeWidth={strokeWidth} fill={fill} />;
-}
+  return <Lucide
+    size={size}
+    color={color}
+    strokeWidth={strokeWidth}
+    fill={fill}
+  />
+};

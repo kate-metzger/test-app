@@ -35,9 +35,28 @@ export default function BookListItem({ book, isDarkMode = false, onPress }: Book
 }
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', borderRadius: 12, padding: 8, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 4 },
-  image: { width: 64, height: 96, borderRadius: 8 },
-  title: { fontSize: 14, fontWeight: '500' },
-  author: { fontSize: 12, color: '#A0A0A0', marginBottom: 2 },
-  statusBox: { marginTop: 4, paddingHorizontal: 4, paddingVertical: 2, borderRadius: 6, alignSelf: 'flex-start' },
+  container: { 
+    flexDirection: 'row', 
+    borderRadius: 12, 
+    padding: 8, 
+    shadowColor: '#000', 
+    shadowOpacity: 0.05, 
+    shadowRadius: 4 },
+  image: { 
+    width: 64, 
+    height: 96, 
+    borderRadius: 8 },
+  title: { 
+    fontSize: 14, 
+    fontWeight: '500' },
+  author: { 
+    fontSize: 12, 
+    color: '#A0A0A0', 
+    marginBottom: 2 },
+  statusBox: { 
+    marginTop: 4, 
+    paddingHorizontal: 4, 
+    paddingVertical: 2, 
+    borderRadius: 6, 
+    alignSelf: 'flex-start' },
 });

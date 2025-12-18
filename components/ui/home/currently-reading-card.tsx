@@ -1,8 +1,14 @@
-import { router } from 'expo-router';
-import { Image, StyleSheet, View, Text } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Image, StyleSheet, View, Text, Pressable } from 'react-native';
 import Button from '../button';
 
-export default function CurrentlyReadingCard() {
+interface CurrentlyReadingCardProps {
+  bookId: string;
+  title: string;
+}
+
+export function CurrentlyReadingCard({ bookId, title }: CurrentlyReadingCardProps) {
+  const router = useRouter();
   const book = {
     title: 'The Name of the Wind',
     author: 'Patrick Rothfuss',
@@ -31,7 +37,7 @@ export default function CurrentlyReadingCard() {
           </Text>
 
           <Button
-            onPress={() => router.back()}
+            onPress={() => router.push(`/library/book-details/${bookId}`)}
             variant="primary"
             textStyle={styles.buttonText}
             style={styles.button}>

@@ -31,9 +31,25 @@ export default function BookGridItem({ book, isDarkMode = false, onPress }: Book
 }
 
 const styles = StyleSheet.create({
-  image: { width: '100%', aspectRatio: 2/3, borderRadius: 12 },
-  progressBarBackground: { height: 4, backgroundColor: '#40404020', borderRadius: 2, marginTop: 2 },
-  progressBarFill: { height: '100%', backgroundColor: '#4A90E2', borderRadius: 2 },
-  title: { fontSize: 14, fontWeight: '500', marginTop: 4 },
-  author: { fontSize: 12, color: '#A0A0A0', marginBottom: 2 },
+  image: { 
+    width: '100%', 
+    aspectRatio: 2/3, 
+    borderRadius: 12 },
+  progressBarBackground: { 
+    height: 4, 
+    backgroundColor: '#40404020', 
+    borderRadius: 2, 
+    marginTop: 2 },
+  progressBarFill: { 
+    height: '100%', 
+    backgroundColor: '#4A90E2', 
+    borderRadius: 2 },
+  title: { 
+    fontSize: 14, 
+    fontWeight: '500', 
+    marginTop: 4 },
+  author: { 
+    fontSize: 12, 
+    color: '#A0A0A0', 
+    marginBottom: 2 },
 });

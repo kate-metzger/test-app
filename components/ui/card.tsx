@@ -1,7 +1,9 @@
-import React from 'react';
-import { View, ViewProps, StyleSheet, Platform } from 'react-native';
+import React, { ReactPortal } from 'react';
+import { View, ViewProps, StyleSheet, Platform, ViewStyle } from 'react-native';
 
 interface CardCustomProps extends ViewProps {
+  children: React.ReactNode;
+  style?: ViewStyle;
   isDarkMode?: boolean;
 }
 
