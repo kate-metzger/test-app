@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { BookHeader } from '../ui/book/book-header';
-import { RatingCard } from '../ui/book/rating-card';
-import { NotesCard } from '../ui/book/notes-card';
-import { RatingStars } from '../ui/rating-stars';
-import { PillList } from '../ui/pill-list';
-import { ActionButtonRow } from '../ui/action-button-row';
-import { RecommendationCarousel } from '../ui/recommendation-carousel';
-
-interface BookDetailsScreenProps {
-    bookId: string;
-    isDarkMode: boolean;
-}
+import { BookHeader } from './ui/book/book-header';
+import { RatingCard } from './ui/book/rating-card';
+import { NotesCard } from './ui/book/notes-card';
+import { RatingStars } from './ui/rating-stars';
+import { PillList } from './ui/pill-list';
+import { ActionButtonRow } from './ui/action-button-row';
+import { RecommendationCarousel } from './ui/recommendation-carousel';
 
 interface Book {
     id: string;
@@ -19,29 +14,48 @@ interface Book {
     author: string;
     coverUrl: string;
     genres: string[];
-    // add other properties like pages, publishedYear, etc.
+    progress: number;
+    currentPage: number;
+    totalPages: number;
+}
+
+export interface BookDetailsScreenProps {
+    bookId: string;
+    isDarkMode: boolean;
 }
 
 export default function BookDetailsScreen({ bookId, isDarkMode }: BookDetailsScreenProps) {
     const [overallRating, setOverallRating] = useState(4.5);
     const [notes, setNotes] = useState('');
     const [isFavorite, setIsFavorite] = useState(false);
+    
     const mockBooks: Book[] = [
         {
             id: '1',
             title: 'Fourth Wing',
             author: 'Rebecca Yarros',
-            coverUrl: '',
+            coverUrl: 'https://example.com/fourth-wing.jpg',
             genres: ['Fantasy', 'Romance', 'Dragons'],
+            progress: 47,
+            currentPage: 312,
+            totalPages:662,
         },
         {
             id: '2',
             title: 'The Way of Kings',
             author: 'Brandon Sanderson',
-            coverUrl: '',
-            genres: ['Fantasy', 'Epic Fantasy']
+            coverUrl: 'https://example.com/fourth-wing.jpg',
+            genres: ['Fantasy', 'Epic Fantasy'],
+            progress: 20,
+            currentPage: 124,
+            totalPages: 1200,
+
         },
     ];
+
+    const book = mockBooks.find((b) => b.id === bookId);
+    if (!book) return null;
+
     const mockContentWarnings = [
         'Violence',
         'Explicit Language',
@@ -66,17 +80,6 @@ export default function BookDetailsScreen({ bookId, isDarkMode }: BookDetailsScr
             match: 88,
         },
     ];
-    const book = mockBooks.find((b: Book) => b.id === bookId);
-
-    if (!book) {
-        return (
-            <View>
-                <Text>
-                    Book not found.
-                </Text>
-            </View>
-        );
-    }
 
     return (
         <View style={{
@@ -85,6 +88,7 @@ export default function BookDetailsScreen({ bookId, isDarkMode }: BookDetailsScr
         }}>
             <ScrollView contentContainerStyle={{ padding: 16 }}>
                 <BookHeader book={book} isDarkMode={isDarkMode} />
+                
                 <ActionButtonRow
                     isDarkMode={isDarkMode}
                     isFavorite={isFavorite}
@@ -92,6 +96,7 @@ export default function BookDetailsScreen({ bookId, isDarkMode }: BookDetailsScr
                     onFavoritePress={() => setIsFavorite(!isFavorite)}
                     onSharePress={() => console.log('Share')}
                 />
+                
                 <RatingCard title="Overall Rating" isDarkMode={isDarkMode}>
                     <RatingStars
                         rating={overallRating}
@@ -151,5 +156,5 @@ export default function BookDetailsScreen({ bookId, isDarkMode }: BookDetailsScr
 
             </ScrollView>
         </View>
-    )
+    );
 }

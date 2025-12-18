@@ -9,7 +9,7 @@ import {
     Pressable,
 } from 'react-native';
 
-interface Recommendation {
+export interface Recommendation {
     id: string;
     title: string;
     author: string;

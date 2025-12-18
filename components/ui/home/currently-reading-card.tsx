@@ -1,27 +1,29 @@
-import { useRouter } from 'expo-router';
+import React from 'react';
 import { Image, StyleSheet, View, Text, Pressable } from 'react-native';
 import Button from '../button';
+import { useRouter } from 'expo-router';
 
-interface CurrentlyReadingCardProps {
-  bookId: string;
+interface Book {
+  id: string;
   title: string;
+  author: string;
+  coverUrl: string;
+  progress: number;
+  currentPage: number;
+  totalPages: number;
 }
 
-export function CurrentlyReadingCard({ bookId, title }: CurrentlyReadingCardProps) {
+interface CurrentlyReadingCardProps {
+  book: Book;
+}
+
+export function CurrentlyReadingCard({ book }: CurrentlyReadingCardProps) {
   const router = useRouter();
-  const book = {
-    title: 'The Name of the Wind',
-    author: 'Patrick Rothfuss',
-    cover: 'https://images.unsplash.com/photo-1711185892790-4cabb6701cb8',
-    progress: 47,
-    currentPage: 312,
-    totalPages: 662,
-  };
 
   return (
     <View style={styles.card}>
       <View style={styles.row}>
-        <Image source={{ uri: book.cover }} style={styles.cover} />
+        <Image source={{ uri: book.coverUrl }} style={styles.cover} />
 
         <View style={styles.info}>
           <Text style={styles.label}>CURRENTLY READING</Text>
@@ -29,7 +31,9 @@ export function CurrentlyReadingCard({ bookId, title }: CurrentlyReadingCardProp
           <Text style={styles.author}>{book.author}</Text>
 
           <View style={styles.progressBar}>
-            <View style={[styles.progressFill, { width: `${book.progress}%` }]} />
+            <View
+              style={[styles.progressFill, { width: `${book.progress}%` }]}
+            />
           </View>
 
           <Text style={styles.pageText}>
@@ -37,12 +41,12 @@ export function CurrentlyReadingCard({ bookId, title }: CurrentlyReadingCardProp
           </Text>
 
           <Button
-            onPress={() => router.push(`/library/book-details/${bookId}`)}
-            variant="primary"
+            onPress={() => router.push(`/library/book-details/${book.id}`)}
+            variant='primary'
             textStyle={styles.buttonText}
             style={styles.button}>
             Continue Reading
-        </Button>
+          </Button>
         </View>
       </View>
     </View>
